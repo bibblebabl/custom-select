@@ -1,9 +1,22 @@
-import "./styles.css";
+import './styles.css'
+import { Select } from './select'
+import { selectOptions } from './data'
 
-document.getElementById("app").innerHTML = `
-<h1>Hello Vanilla!</h1>
-<div>
-  We use the same configuration as Parcel to bundle this sandbox, you can find more
-  info about Parcel 
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
-</div>`;
+// init select
+window.addEventListener('load', function () {
+  const comboboxSelect: NodeListOf<HTMLElement> = document.querySelectorAll('.combo__select')
+
+  comboboxSelect.forEach((element) => {
+    const comboboxElement = element.querySelector('[role=combobox]')
+    const listboxElement = element.querySelector('[role=listbox]')
+
+    new Select(
+      {
+        element,
+        comboboxElement: comboboxElement as HTMLElement,
+        listboxElement: listboxElement as HTMLElement,
+      },
+      selectOptions
+    )
+  })
+})
